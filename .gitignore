@@ -1,0 +1,68 @@
+# Root gitignore for CinephileAi
+
+# Virtual environment
+backend/venv/
+venv/
+ENV/
+
+# Python Cache
+**/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Local Database
+backend/*.db
+*.db
+backend/cinephile.db
+
+# Environments
+.env
+backend/.env
+frontend/.env
+.env.local
+.env.*.local
+
+# Node.js
+frontend/node_modules/
+node_modules/
+
+# Production / Builds
+frontend/dist/
+dist/
+
+# IDE files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+
+# Log files
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Scratches and download tests
+backend/test.jpg
+backend/test_interstellar_real.jpg
+backend/test_interstellar_correct.jpg
+backend/test_api.json
+backend/test_omdb.json
+backend/movies_list.csv
+backend/downloaded_mappings.csv
+backend/test_scrape.py
+backend/test_ddg.ps1
+backend/test_google.ps1
+backend/get_tmdb_images.ps1
+backend/prepare_downloads.py
+backend/download_images.ps1
+backend/update_database_posters.py
+backend/download_posters.py
