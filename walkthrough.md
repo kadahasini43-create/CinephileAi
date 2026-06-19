@@ -132,6 +132,18 @@ Here are screenshots of the homepage trending lists loading the cached real post
 
 ---
 
+## GitHub Pages Configuration & CI/CD
+
+We configured the frontend codebase to support deployment to GitHub Pages at the repository path `/CinephileAi/`:
+
+### Key Modifications
+* **Vite Config:** Updated [vite.config.ts](file:///c:/Users/hasini/cinephileai/frontend/vite.config.ts) to set `base: '/CinephileAi/'` for correct production path routing.
+* **Asset Prepending:** Updated components ([Hero.tsx](file:///c:/Users/hasini/cinephileai/frontend/src/components/Hero.tsx), [MovieCard.tsx](file:///c:/Users/hasini/cinephileai/frontend/src/components/MovieCard.tsx), [MovieDetails.tsx](file:///c:/Users/hasini/cinephileai/frontend/src/pages/MovieDetails.tsx), [Admin.tsx](file:///c:/Users/hasini/cinephileai/frontend/src/pages/Admin.tsx)) to prepend local asset paths (like `/posters/` and `/theater_background.png`) with `import.meta.env.BASE_URL` dynamically.
+* **Jekyll & 404 Routing Fallback:** Added [copy-404.js](file:///c:/Users/hasini/cinephileai/frontend/copy-404.js) to automate copying `index.html` to `404.html` and creating a `.nojekyll` file in every production build.
+* **CI/CD Pipeline:** Created a GitHub Actions workflow [.github/workflows/deploy.yml](file:///c:/Users/hasini/cinephileai/.github/workflows/deploy.yml) that builds the React project on every push to `main` and automatically deploys the built outputs to the `gh-pages` branch.
+
+---
+
 ## Source Code Repository
 
 The complete codebase has been initialized and pushed to GitHub:
