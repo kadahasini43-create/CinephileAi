@@ -445,9 +445,11 @@ export const Admin: React.FC = () => {
                           {m.poster_path ? (
                             <img
                               src={
-                                (m.poster_path.startsWith('http') || m.poster_path.startsWith('/posters/') || m.poster_path.startsWith('/assets/'))
+                                (m.poster_path.startsWith('http'))
                                   ? m.poster_path
-                                  : `https://image.tmdb.org/t/p/w92${m.poster_path}`
+                                  : (m.poster_path.startsWith('/posters/') || m.poster_path.startsWith('/assets/'))
+                                    ? `${import.meta.env.BASE_URL.replace(/\/$/, '')}${m.poster_path}`
+                                    : `https://image.tmdb.org/t/p/w92${m.poster_path}`
                               }
                               alt=""
                               className="w-6 h-9 object-cover rounded"

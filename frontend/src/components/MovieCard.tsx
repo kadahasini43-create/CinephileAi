@@ -24,9 +24,11 @@ export const MovieCard: React.FC<MovieCardProps> = ({
 }) => {
   const { user } = useAuth();
   const imageUrl = movie.poster_path
-    ? (movie.poster_path.startsWith('http') || movie.poster_path.startsWith('/posters/') || movie.poster_path.startsWith('/assets/'))
+    ? (movie.poster_path.startsWith('http'))
       ? movie.poster_path
-      : `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+      : (movie.poster_path.startsWith('/posters/') || movie.poster_path.startsWith('/assets/'))
+        ? `${import.meta.env.BASE_URL.replace(/\/$/, '')}${movie.poster_path}`
+        : `https://image.tmdb.org/t/p/w500${movie.poster_path}`
     : null;
 
   const releaseYear = movie.release_date

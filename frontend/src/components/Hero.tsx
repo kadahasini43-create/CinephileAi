@@ -71,7 +71,7 @@ export const Hero: React.FC<HeroProps> = ({
         style={{
           backgroundImage: `
             linear-gradient(to bottom, rgba(2, 6, 23, 0.4) 0%, rgba(2, 6, 23, 0.98) 100%),
-            url('/theater_background.png')
+            url('${import.meta.env.BASE_URL}theater_background.png')
           `
         }}
       />
@@ -134,9 +134,11 @@ export const Hero: React.FC<HeroProps> = ({
                   {m.poster_path ? (
                     <img
                       src={
-                        (m.poster_path.startsWith('http') || m.poster_path.startsWith('/posters/') || m.poster_path.startsWith('/assets/'))
+                        (m.poster_path.startsWith('http'))
                           ? m.poster_path
-                          : `https://image.tmdb.org/t/p/w92${m.poster_path}`
+                          : (m.poster_path.startsWith('/posters/') || m.poster_path.startsWith('/assets/'))
+                            ? `${import.meta.env.BASE_URL.replace(/\/$/, '')}${m.poster_path}`
+                            : `https://image.tmdb.org/t/p/w92${m.poster_path}`
                       }
                       alt={m.title}
                       className="w-9 h-13 object-cover rounded"

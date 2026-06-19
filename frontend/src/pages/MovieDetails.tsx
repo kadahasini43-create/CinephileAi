@@ -163,15 +163,19 @@ export const MovieDetails: React.FC<MovieDetailsProps> = ({
   }
 
   const backdropUrl = movie.backdrop_path
-    ? (movie.backdrop_path.startsWith('http') || movie.backdrop_path.startsWith('/posters/') || movie.backdrop_path.startsWith('/assets/'))
+    ? (movie.backdrop_path.startsWith('http'))
       ? movie.backdrop_path
-      : `https://image.tmdb.org/t/p/original${movie.backdrop_path}`
+      : (movie.backdrop_path.startsWith('/posters/') || movie.backdrop_path.startsWith('/assets/'))
+        ? `${import.meta.env.BASE_URL.replace(/\/$/, '')}${movie.backdrop_path}`
+        : `https://image.tmdb.org/t/p/original${movie.backdrop_path}`
     : 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=1920';
 
   const posterUrl = movie.poster_path
-    ? (movie.poster_path.startsWith('http') || movie.poster_path.startsWith('/posters/') || movie.poster_path.startsWith('/assets/'))
+    ? (movie.poster_path.startsWith('http'))
       ? movie.poster_path
-      : `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+      : (movie.poster_path.startsWith('/posters/') || movie.poster_path.startsWith('/assets/'))
+        ? `${import.meta.env.BASE_URL.replace(/\/$/, '')}${movie.poster_path}`
+        : `https://image.tmdb.org/t/p/w500${movie.poster_path}`
     : null;
 
   return (
